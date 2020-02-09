@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<script src="./vue.js"></script>
+<style>
+    .show-content{
+        padding: 15px 25px;
+        color: white;
+        background-color: lime;
+        font-weight: 500;
+        position: fixed;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 6px;
+    }
+    @keyframes fadeIn {
+        0%{
+            top: 0;
+            opacity: 0;
+        }
+        100%{
+            top: 50px;
+            opacity: 1;
+        }
+    }
+    @keyframes fadeOut {
+        100%{
+            top: 0;
+            opacity: 0;
+        }
+        0%{
+            top: 50px;
+            opacity: 1;
+        }
+    }
+    .fade-in{
+        animation: fadeIn .4s;
+    }
+    .fade-out{
+        animation: fadeOut .4s; 
+    }
+</style>
+<body>
+    <button id="btn">dw</button>
+    <div id="app"></div>
+    <script>
+        const btn = document.getElementById("btn")
+        btn.onclick = function(){
+            const app = new Vue({
+                data:{
+                    show:true,
+                    flag:true
+                },
+                computed:{
+                    animate(){
+                        return this.flag ? 'fade-in' : 'fade-out'
+                    }
+                },
+                el:document.createElement("div"),
+                template:'<div class = "show-content" v-if="show" :class="animate">$  修改成功</div>'
+            });
+            document.body.appendChild(app.$el);
+            setTimeout(_ => {
+                app.show = false;
+            },2000);
+            setTimeout(_ =>{
+                app.flag = false;
+            },1800)
+        }
+       
+    </script>
+</body>
+
+</html>

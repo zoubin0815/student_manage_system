@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="./vue.js">
+
+</script>
+<body>
+    <div id="app">
+    <input type="text" :value="content" @input="inputHandle">
+</div>
+</body>
+<script>
+    const vm = new Vue({
+        el:'#app',
+        data:{
+            content:'haha'
+        },
+        methods:{
+            inputHandle(e){
+                this.content = e.target.value
+            }
+        }
+    })
+</script>
+</html>
